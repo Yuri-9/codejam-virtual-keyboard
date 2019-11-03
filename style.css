@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+}
+
+.input_sheet {    
+    display: block;
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    border: black solid 2px;
+    border-radius: 5px;
+    font-size: 25px;
+    word-break: break-word;
+
+}
+.keyboarder_wrapper {
+    width: 862px;
+    margin: 0 auto;
+    background-color: grey;
+}
+.row {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.item {
+    height: 50px;
+    width: 50px;
+    background-color:#ffda8f;
+    margin: 3px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;    
+}
+ 
+.item:hover {
+    background-color:#d1ab60;
+}
+
+.clickBtn {
+    background-color:#d1ab60;
+    border-radius: 20px;
+    font-size: 20px;
+}  
+
+.clickBtnCape {
+    background-color:#d1ab60;
+    border-radius: 20px;
+    font-size: 20px;   
+}
+
+.row1 .item:last-child { 
+    width: 125px;
+}
+
+.row2 .item:first-child, .row2 .item:last-child { 
+    width: 60px;
+}
+
+.row3 .item:first-child,
+.row3 .item:last-child,
+.row4 .item:first-child,
+.row4 .item:last-child { 
+    width: 117px;
+}
+
+.row5 .item:last-child { 
+    width: 57px;
+}
+
+#Space {
+    width: 397px;
+}
+
