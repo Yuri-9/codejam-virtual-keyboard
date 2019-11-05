@@ -52,22 +52,19 @@
     font-size: 20px;   
 }
 
-.row1 .item:last-child { 
+#Backspace { 
     width: 125px;
 }
 
-.row2 .item:first-child, .row2 .item:last-child { 
+#Tab, #Delete { 
     width: 60px;
 }
 
-.row3 .item:first-child,
-.row3 .item:last-child,
-.row4 .item:first-child,
-.row4 .item:last-child { 
+#CapsLock, #Enter, #ShiftLeft, #ShiftRight { 
     width: 117px;
 }
 
-.row5 .item:last-child { 
+#ControlRight { 
     width: 57px;
 }
 
