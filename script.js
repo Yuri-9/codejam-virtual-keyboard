@@ -1,17 +1,72 @@
-let arrayKeyboarderRu = ['ё','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'DEL', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'ENTER', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', '&nbsp', 'Alt', '◄', '▼', '►', 'Ctrl'];
+let ArrayKeyboard =[
+    ['Backquote', 'ё', 'Ё', '`', '~'],
+    ['Digit1', '1', '!', '1', '!'],
+    ['Digit2', '2', '"', '2', '@'],
+    ['Digit3', '3', '№', '3', '#'],
+    ['Digit4', '4', ';', '4', '$'],
+    ['Digit5', '5', '%', '5', '%'],
+    ['Digit6', '6', ':', '6', '^'],
+    ['Digit7', '7', '?', '7', '&'],
+    ['Digit8', '8', '*', '8', '*'],
+    ['Digit9', '9', '(', '9', '('],
+    ['Digit0', '0', ')', '0', ')'],
+    ['Minus', '-', '_', '-', '_'],
+    ['Equal', '=', '+', '=', '+'],
+    ['Backspace', 'Backspace', 'Backspace', 'Backspace', 'Backspace'],
+    ['Tab', 'Tab', 'Tab', 'Tab', 'Tab'],
+    ['KeyQ', 'й', 'Й', 'q', 'Q'],
+    ['KeyW', 'ц', 'Ц', 'w', 'W'],
+    ['KeyE', 'у', 'У', 'e', 'E'],
+    ['KeyR', 'к', 'К', 'r', 'R'],
+    ['KeyT', 'е', 'Е', 't', 'T'],
+    ['KeyY', 'н', 'Н', 'y', 'Y'],
+    ['KeyU', 'г', 'Г', 'u', 'U'],
+    ['KeyI', 'ш', 'Ш', 'i', 'I'],
+    ['KeyO', 'щ', 'Щ', 'o', 'O'],
+    ['KeyP', 'з', 'З', 'p', 'P'],
+    ['BracketLeft', 'х', 'Х', '[', '{'],
+    ['BracketRight', 'ъ', 'Ъ', ']', '}'],
+    ['Backslash', '\\', '//', '\\', '|'],
+    ['Delete', 'DEL', 'DEL', 'DEL', 'DEL'],
+    ['CapsLock', 'CapsLock', 'CapsLock', 'CapsLock', 'CapsLock'],
+    ['KeyA', 'ф', 'Ф', 'a', 'A'],
+    ['KeyS', 'ы', 'Ы', 's', 'S'],
+    ['KeyD', 'в', 'В', 'd', 'D'],
+    ['KeyF', 'а', 'А', 'f', 'F'],
+    ['KeyG', 'п', 'П', 'g', 'G'],
+    ['KeyH', 'р', 'Р', 'h', 'H'],
+    ['KeyJ', 'о', 'О', 'j', 'J'],
+    ['KeyK', 'л', 'Л', 'k', 'K'],
+    ['KeyL', 'д', 'Д', 'l', 'L'],
+    ['Semicolon', 'ж', 'Ж', ';', ':'],
+    ['Quote', 'э', 'Э', '\'', '"'],
+    ['Enter', 'ENTER', 'ENTER', 'ENTER', 'ENTER'],
+    ['ShiftLeft', 'Shift', 'Shift', 'Shift', 'Shift'],
+    ['KeyZ', 'я', 'Я', 'z', 'Z'],
+    ['KeyX', 'ч', 'Ч', 'x', 'X'],
+    ['KeyC', 'с', 'С', 'c', 'C'],
+    ['KeyV', 'м', 'М', 'v', 'V'],
+    ['KeyB', 'и', 'И', 'b', 'B'],
+    ['KeyN', 'т', 'Т', 'n', 'N'],
+    ['KeyM', 'ь', 'Ь', 'm', 'M'],
+    ['Comma', 'б', 'Б', ',', '<'],
+    ['Period', 'ю', 'Ю', '.', '>'],
+    ['Slash', '.', ',', '/', '?'],
+    ['ArrowUp', '▲', '▲', '▲', '▲'],
+    ['ShiftRight', 'Shift', 'Shift', 'Shift', 'Shift'],
+    ['ControlLeft', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl'],
+    ['MetaLeft', 'Win', 'Win', 'Win', 'Win'],
+    ['AltLeft', 'Alt', 'Alt', 'Alt', 'Alt'],
+    ['Space', '&nbsp', '&nbsp', '&nbsp', '&nbsp'],
+    ['AltRight', 'Alt', 'Alt', 'Alt', 'Alt'],
+    ['ArrowLeft', '◄', '◄', '◄', '◄'],
+    ['ArrowDown', '▼', '▼', '▼', '▼'],
+    ['ArrowRight', '►', '►', '►', '►'],
+    ['ControlRight', 'Ctrl', 'Ctrl', 'Ctrl', 'Ctrl']];
 
-let arrayKeyboarderRuBig = ['Ё','!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+','Backspace', 'Tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', '//', 'DEL', 'CapsLock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'ENTER', 'Shift', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', '&nbsp', 'Alt', '◄', '▼', '►', 'Ctrl'];
-
-let arrayKeyboarderEn = ['`','1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=','Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'DEL', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'ENTER', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/','▲', 'Shift', 'Ctrl', 'Win', 'Alt', '&nbsp', 'Alt', '◄', '▼', '►', 'Ctrl'];
-
-let arrayKeyboarderEnBig = ['~','!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+','Backspace', 'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'DEL', 'CapsLock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '"', 'ENTER', 'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?','▲', 'Shift', 'Ctrl', 'Win', 'Alt', '&nbsp', 'Alt', '◄', '▼', '►', 'Ctrl'];
+let arrayKeyCodeChange = [0, 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15 , 16, 17 ,18 ,19, 20, 21 , 22, 23, 24, 25, 26, 27, 30, 31, 32 , 33, 34, 35, 36, 37, 38, 39, 40, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52];
 
 
-let arrayKeyCode = ['Backquote','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7', 'Digit8', 'Digit9', 'Digit0','Minus','Equal','Backspace','Tab' ,'KeyQ','KeyW','KeyE','KeyR','KeyT','KeyY','KeyU','KeyI','KeyO','KeyP','BracketLeft','BracketRight','Backslash','Delete', 'CapsLock','KeyA','KeyS','KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote','Enter','ShiftLeft','KeyZ','KeyX','KeyC','KeyV','KeyB','KeyN','KeyM','Comma','Period','Slash','ArrowUp','ShiftRight','ControlLeft','MetaLeft','AltLeft','Space','AltRight','ArrowLeft','ArrowDown','ArrowRight','ControlRight']
-
-
-let numberArrayKeyboard = [arrayKeyboarderRu, arrayKeyboarderRuBig, arrayKeyboarderEn,arrayKeyboarderEnBig];
-let count = 0;
 
 
 
@@ -32,66 +87,77 @@ for (let i = 1; i <= 5; i++){
     document.querySelector('body > div.keyboarder_wrapper').insertAdjacentElement('beforeend', rowDiv); 
 }
 
-
-
-//заполенение строк
-
-function fillDiv(count2) {
-    let r = numberArrayKeyboard[count2];
+//заполенение строк Div    
     for (let i = 0; i < 64; i++) {
         let  tempDiv = document.createElement('div');
-        tempDiv.className = 'item';
-        let numberRow = 'div.row';
-        if (0 < i && i <= 13) {
-            numberRow = numberRow + 1;
+        tempDiv.className = 'item';        
+        tempDiv.id = ArrayKeyboard[i][0];  
+        tempDiv.innerHTML = ArrayKeyboard[i][1];
+        if (0 <= i && i <= 13) {
+            document.querySelector('.row1').insertAdjacentElement('beforeend', tempDiv); 
         } else if (13 < i && i <= 28){
-            numberRow = numberRow + 2;
+            document.querySelector('.row2').insertAdjacentElement('beforeend', tempDiv);
         } else if (28 < i && i <= 41) {
-            numberRow = numberRow + 3;
+            document.querySelector('.row3').insertAdjacentElement('beforeend', tempDiv);
         } else if (31 < i && i <= 54) {
-            numberRow = numberRow + 4;
+            document.querySelector('.row4').insertAdjacentElement('beforeend', tempDiv);
         } else if (54 < i && i <= 63) {
-            numberRow = numberRow + 5;
+            document.querySelector('.row5').insertAdjacentElement('beforeend', tempDiv);
         }
-        tempDiv.id = arrayKeyCode[i];
-        tempDiv.innerHTML = r[i];         
-        document.querySelector(numberRow).insertAdjacentElement('beforeend', tempDiv);  
+    }
+ 
+function changeKeyboard (numberKey) {
+    for (let i = 0; i < arrayKeyCodeChange.length; i++){
+        let a = ArrayKeyboard[arrayKeyCodeChange[i]][0];
+        let b = ArrayKeyboard[arrayKeyCodeChange[i]][numberKey];    
+        document.querySelector('#' + a).innerHTML = b;
     }
 }
 
-fillDiv(count);
+changeKeyboard(4);
 
 //нажатие клавишу мыши
-
-let countAltL = 0;
-let countShiftL = 0;
+let numKeyboard = 1;
+let numberAltL = 0;
+let numberShiftL = 0;
 let arrClickKey = ['AltLeft','AltRight', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'];
 
-function CheckClick(idCheckName, countCheck, idCheck) {
-    if (event.target.id === idCheckName) {
-        if (countCheck === 0) { 
-            countCheck = 1;   
+function CheckClick(idCheckName, numberClick, idCheck) {
+    if (event.target.id == idCheckName) {
+        if (numberClick == 0) { 
+            numberClick = 1;   
             document.querySelector(idCheck).classList.add('clickBtnCape'); 
-        } else if (countCheck === 1){
-            countCheck = 0;   
-            document.querySelector(idCheck).classList.remove ('clickBtnCape');
-            
+        } else if (numberClick == 1){
+            numberClick = 0;   
+            document.querySelector(idCheck).classList.remove('clickBtnCape');            
         }
         
     }
-    return countCheck; 
+    console.log('numberClick ', numberClick);
+    return numberClick;
+    
 }
 
 
 const clickDown = (event) => {
 
-    countAltL = CheckClick('AltLeft', countAltL , '#AltLeft');
-    countShiftL = CheckClick('ShiftLeft', countShiftL , '#ShiftLeft'); 
+    numberAltL = CheckClick('AltLeft', numberAltL , '#AltLeft');
+    numberShiftL = CheckClick('ShiftLeft', numberShiftL , '#ShiftLeft'); 
 
-    if ((document.querySelector('#AltLeft').className === 'clickBtnCape') && (document.querySelector('#ShiftLeft').className === 'clickBtnCape')) {
+    if ((document.querySelector('#AltLeft').classList[1] === 'clickBtnCape') && (document.querySelector('#ShiftLeft').classList[1] === 'clickBtnCape')) {
+            if ((numKeyboard == 1) || (numKeyboard == 2)) {
+                numKeyboard = numKeyboard + 2;
+                changeKeyboard(numKeyboard);                    
+            document.querySelector('#AltLeft').classList.remove('clickBtnCape');
+            document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
 
-    fillDiv(count);
-    } 
+        } else if ((numKeyboard == 3) || (numKeyboard == 4)){
+            numKeyboard = numKeyboard - 2;
+            changeKeyboard(numKeyboard);                     
+            document.querySelector('#AltLeft').classList.remove('clickBtnCape');
+            document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
+        } 
+    }
 
     for (let i = 0; i < 6; i++) {      //Если вспомогательные кнопки,то дальше не идет
         if ((event.target.id === arrClickKey[i]) ) {
@@ -99,37 +165,33 @@ const clickDown = (event) => {
         }
     }
 
-    if (event.target.id === 'CapsLock') {            
-        document.querySelectorAll('.item').forEach(e => e.parentNode.removeChild(e));
-        if (count === 0) {
-            count = 1;
-            fillDiv(count);                    
+    if (event.target.id == 'CapsLock') {
+        if ((numKeyboard == 1) || (numKeyboard == 3)) {
+            numKeyboard = numKeyboard + 1;
+            changeKeyboard(numKeyboard);                    
             document.querySelector('#CapsLock').classList.add('clickBtnCape');       
-        } else if (count === 1){
-            count = 0;
-            fillDiv(count);
-            if (event.target.className === 'item') {  
-                event.target.classList.add('clickBtn');                             
-            } 
+        } else {
+            numKeyboard = numKeyboard - 1;
+            changeKeyboard(numKeyboard);            
+            document.querySelector('#CapsLock').classList.remove('clickBtnCape');        
         }
         return;
     }         
-    if (event.target.className === 'item') {  
+    if (event.target.className == 'item') {  
         event.target.classList.add('clickBtn'); 
-        if (event.target.id === 'Backspace') {
+        if (event.target.id == 'Backspace') {
             document.querySelector('div.input_sheet').lastChild.remove();
-        } else if (event.target.id === 'Enter') {
+        } else if (event.target.id == 'Enter') {
             document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '<br>');
-        } else if (event.target.id === 'Tab') {
+        } else if (event.target.id == 'Tab') {
             document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
         } else {            
             const tr = event.target.innerText;
             document.querySelector('div.input_sheet').insertAdjacentText('beforeend', tr);
-        } console.log(count);
+        } 
     }
 }   
- 
- const clickUp = (event) => {
+const clickUp = () => {
     document.querySelectorAll('.item').forEach(item => item.classList.remove('clickBtn'));
     
  } 
