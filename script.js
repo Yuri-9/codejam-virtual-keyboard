@@ -114,57 +114,14 @@ function changeKeyboard (numberKey) {
     }
 }
 
-changeKeyboard(4);
+var SocketValue = localStorage.getItem('numSocket');
+(SocketValue == 'en') ? changeKeyboard(3) : changeKeyboard(1);
+console.log (SocketValue);
 
-//нажатие клавишу мыши
+
 let numKeyboard = 1;
-let numberAltL = 0;
-let numberShiftL = 0;
-let arrClickKey = ['AltLeft','AltRight', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'ControlRight'];
-
-function CheckClick(idCheckName, numberClick, idCheck) {
-    if (event.target.id == idCheckName) {
-        if (numberClick == 0) { 
-            numberClick = 1;   
-            document.querySelector(idCheck).classList.add('clickBtnCape'); 
-        } else if (numberClick == 1){
-            numberClick = 0;   
-            document.querySelector(idCheck).classList.remove('clickBtnCape');            
-        }
-        
-    }
-    console.log('numberClick ', numberClick);
-    return numberClick;
-    
-}
-
 
 const clickDown = (event) => {
-
-    numberAltL = CheckClick('AltLeft', numberAltL , '#AltLeft');
-    numberShiftL = CheckClick('ShiftLeft', numberShiftL , '#ShiftLeft'); 
-
-    if ((document.querySelector('#AltLeft').classList[1] === 'clickBtnCape') && (document.querySelector('#ShiftLeft').classList[1] === 'clickBtnCape')) {
-            if ((numKeyboard == 1) || (numKeyboard == 2)) {
-                numKeyboard = numKeyboard + 2;
-                changeKeyboard(numKeyboard);                    
-            document.querySelector('#AltLeft').classList.remove('clickBtnCape');
-            document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
-
-        } else if ((numKeyboard == 3) || (numKeyboard == 4)){
-            numKeyboard = numKeyboard - 2;
-            changeKeyboard(numKeyboard);                     
-            document.querySelector('#AltLeft').classList.remove('clickBtnCape');
-            document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
-        } 
-    }
-
-    for (let i = 0; i < 6; i++) {      //Если вспомогательные кнопки,то дальше не идет
-        if ((event.target.id === arrClickKey[i]) ) {
-            return;
-        }
-    }
-
     if (event.target.id == 'CapsLock') {
         if ((numKeyboard == 1) || (numKeyboard == 3)) {
             numKeyboard = numKeyboard + 1;
@@ -173,11 +130,43 @@ const clickDown = (event) => {
         } else {
             numKeyboard = numKeyboard - 1;
             changeKeyboard(numKeyboard);            
-            document.querySelector('#CapsLock').classList.remove('clickBtnCape');        
+            document.querySelector('#CapsLock').classList.remove('clickBtnCape');     
         }
         return;
-    }         
-    if (event.target.className == 'item') {  
+    } 
+    if (event.target.id == 'AltLeft') {
+        document.querySelector('#AltLeft').classList.add('clickBtnCape');
+    }  
+    if (event.target.id == 'ControlLeft') {
+        document.querySelector('#ControlLeft').classList.add('clickBtnCape');
+    } 
+    if (event.target.id == 'ShiftLeft') {
+        document.querySelector('#ShiftLeft').classList.add('clickBtnCape');
+        if ((document.querySelector('#AltLeft').classList[1] == 'clickBtnCape') || (document.querySelector    ('#ControlLeft').classList[1] == 'clickBtnCape')) {
+            if ((numKeyboard == 1) || (numKeyboard == 2)) {
+                numKeyboard = numKeyboard + 2;
+                changeKeyboard(numKeyboard);
+                localStorage.setItem('numSocket', 'en')                             
+            } else if ((numKeyboard == 3) || (numKeyboard == 4)){
+                numKeyboard = numKeyboard - 2;
+                changeKeyboard(numKeyboard);  
+                localStorage.setItem('numSocket', 'ru')                               
+            }
+        } else if ((numKeyboard == 1) || (numKeyboard == 3)) {
+            numKeyboard = numKeyboard + 1;
+            changeKeyboard(numKeyboard);
+        } else {
+            numKeyboard = numKeyboard - 1;
+            changeKeyboard(numKeyboard);
+        }
+
+    }  
+
+    if (event.target.className == 'item') {
+        document.querySelector('#AltLeft').classList.remove('clickBtnCape');
+        document.querySelector('#ControlLeft').classList.remove('clickBtnCape');
+        document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
+         
         event.target.classList.add('clickBtn'); 
         if (event.target.id == 'Backspace') {
             document.querySelector('div.input_sheet').lastChild.remove();
@@ -193,8 +182,12 @@ const clickDown = (event) => {
 }   
 const clickUp = () => {
     document.querySelectorAll('.item').forEach(item => item.classList.remove('clickBtn'));
-    
- } 
+    if  (((document.querySelector('#AltLeft').classList[1] == 'clickBtnCape') || (document.querySelector('#ControlLeft').classList[1] == 'clickBtnCape')) && (document.querySelector('#ShiftLeft').classList[1] == 'clickBtnCape')) {
+        document.querySelector('#AltLeft').classList.remove('clickBtnCape');
+        document.querySelector('#ControlLeft').classList.remove('clickBtnCape');
+        document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
+    }
+}  
 document.querySelector('.keyboarder_wrapper').addEventListener('mousedown', clickDown);
 document.addEventListener('mouseup', clickUp);
 
