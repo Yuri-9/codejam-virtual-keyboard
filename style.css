@@ -11,6 +11,7 @@
     border-radius: 5px;
     font-size: 25px;
     word-break: break-word;
+    overflow: auto;
 
 }
 .keyboarder_wrapper {
