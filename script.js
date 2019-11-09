@@ -172,7 +172,9 @@ const clickDownMouse = (event) => {
     }  
     if ((event.target.id == 'Backspace') || (event.code == 'Backspace')) {
         document.querySelector('#Backspace').classList.add('clickBtnCape');
+        if (document.querySelector('div.input_sheet').childNodes.length >= 1) {
         document.querySelector('div.input_sheet').lastChild.remove();
+        }
     }
     if ((event.target.id == 'Enter') || (event.code == 'Enter')) {
         document.querySelector('#Enter').classList.add('clickBtnCape');
@@ -192,7 +194,7 @@ const clickDownMouse = (event) => {
                       
         const tr = event.target.innerText;
         document.querySelector('div.input_sheet').insertAdjacentText('beforeend', tr);
-        
+        event.target.classList.add('clickBtn');
 
         document.querySelector('#AltLeft').classList.remove('clickBtnCape');
         document.querySelector('#ControlLeft').classList.remove('clickBtnCape');
