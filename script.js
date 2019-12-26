@@ -1,5 +1,3 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-plusplus */
 const arrayKeyboard = [
   ['Backquote', 'ё', 'Ё', '`', '~'],
   ['Digit1', '1', '!', '1', '!'],
@@ -73,176 +71,198 @@ const arrayKeyCodeChange = [
   30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
   40, 43, 44, 45, 46, 47, 48, 49,
   50, 51, 52];
-
 const arrayKeyChange = [];
-for (let i = 0; i < arrayKeyCodeChange.length; i++) {
-  arrayKeyChange[i] = arrayKeyboard[arrayKeyCodeChange[i]];
+let numKeyboard = (localStorage.getItem('numSocket') === '3') ? 3 : 1;
+
+
+function createSheet(nameClass) {
+  const elemSheet = document.createElement('div');
+  elemSheet.className = nameClass;
+  document.querySelector('body').insertAdjacentElement('beforeend', elemSheet);
 }
+createSheet('input_sheet');
+createSheet('keyboarder_wrapper');
+document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '|');
 
-const sheetDiv = document.createElement('div');
-sheetDiv.className = 'input_sheet';
-document.querySelector('body').insertAdjacentElement('beforeend', sheetDiv);
 
-const keyboardDiv = document.createElement('div');
-keyboardDiv.className = 'keyboarder_wrapper';
-document.querySelector('body').insertAdjacentElement('beforeend', keyboardDiv);
+(function addRows() {
+  for (let i = 1; i <= 5; i += 1) {
+    const rowDiv = document.createElement('div');
+    rowDiv.className = `row${i}`;
+    rowDiv.classList.add('row');
+    document.querySelector('body > div.keyboarder_wrapper').insertAdjacentElement('beforeend', rowDiv);
+  }
+}());
 
-// добовление строк
-for (let i = 1; i <= 5; i++) {
-  const rowDiv = document.createElement('div');
-  const nameRowDiv = `row${i}`;
-  rowDiv.className = nameRowDiv;
-  rowDiv.classList.add('row');
-  document.querySelector('body > div.keyboarder_wrapper').insertAdjacentElement('beforeend', rowDiv);
-}
 
-// заполенение строк Div
-for (let i = 0; i < 64; i++) {
+function renderKeyboard(elem, ind) {
   const tempDiv = document.createElement('div');
   tempDiv.className = 'item';
-  tempDiv.id = arrayKeyboard[i][0];
-  tempDiv.innerHTML = arrayKeyboard[i][1];
-  if (i >= 0 && i <= 13) {
-    document.querySelector('.row1').insertAdjacentElement('beforeend', tempDiv);
-  } else if (i > 13 && i <= 28) {
-    document.querySelector('.row2').insertAdjacentElement('beforeend', tempDiv);
-  } else if (i > 28 && i <= 41) {
-    document.querySelector('.row3').insertAdjacentElement('beforeend', tempDiv);
-  } else if (i > 31 && i <= 54) {
-    document.querySelector('.row4').insertAdjacentElement('beforeend', tempDiv);
-  } else if (i > 54 && i <= 63) {
-    document.querySelector('.row5').insertAdjacentElement('beforeend', tempDiv);
-  }
+  [tempDiv.id] = elem;
+  [, tempDiv.innerHTML] = elem;
+  let rowNumber;
+  if (ind <= 13) rowNumber = '.row1';
+  if (ind > 13 && ind <= 28) rowNumber = '.row2';
+  if (ind > 28 && ind <= 41) rowNumber = '.row3';
+  if (ind > 41 && ind <= 54) rowNumber = '.row4';
+  if (ind > 54 && ind <= 63) rowNumber = '.row5';
+  document.querySelector(rowNumber).insertAdjacentElement('beforeend', tempDiv);
 }
 
-for (let i = 0; i < arrayKeyChange.length; i++) {
-  const a = arrayKeyChange[i][0];
-  document.querySelector(`#${a}`).classList.add('itemChange');
-}
+arrayKeyboard.forEach((elem, index) => { renderKeyboard(elem, index); });
+
+
+(function selectKeyChange() {
+  arrayKeyCodeChange.forEach((item) => {
+    arrayKeyChange.push(arrayKeyboard[item]);
+    const [a] = arrayKeyboard[item];
+    document.getElementById(a).classList.add('itemChange');
+  });
+}());
+
 
 function changeKeyboard(numberKey) {
-  for (let i = 0; i < arrayKeyChange.length; i++) {
-    const a = arrayKeyChange[i][0];
-    const b = arrayKeyChange[i][numberKey];
-    document.querySelector(`#${a}`).innerHTML = b;
+  arrayKeyChange.forEach((item) => {
+    const [a] = item;
+    const b = item[numberKey];
+    document.getElementById(a).innerHTML = b;
+  });
+}
+
+changeKeyboard(numKeyboard);
+
+
+function addClickBnt(arr) {
+  arr.forEach((item) => document.getElementById(item).classList.add('clickBtnCape'));
+}
+
+function removeClickBnt(arr) {
+  arr.forEach((item) => document.getElementById(item).classList.remove('clickBtnCape'));
+}
+
+function checkContainsBtnCape(arr) {
+  return arr.some((item) => document.getElementById(item).classList.contains('clickBtnCape'));
+}
+
+
+function clickCapsLock() {
+  if (!checkContainsBtnCape(['CapsLock'])) {
+    addClickBnt(['CapsLock']);
+  } else {
+    removeClickBnt(['CapsLock']);
+  }
+  numKeyboard = ((numKeyboard === 1) || (numKeyboard === 3)) ? numKeyboard += 1 : numKeyboard -= 1;
+  changeKeyboard(numKeyboard);
+}
+
+function clickAlt(side) {
+  if (!checkContainsBtnCape([side])) {
+    addClickBnt([side]);
+  } else {
+    removeClickBnt([side]);
   }
 }
 
-document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '|');
-let numKeyboard;
-const socketValue = localStorage.getItem('numSocket');
-if (socketValue === 'en') {
-  changeKeyboard(3);
-  numKeyboard = 3;
-} else {
-  changeKeyboard(1);
-  numKeyboard = 1;
+function clickControl(side) {
+  if (!checkContainsBtnCape([side])) {
+    addClickBnt([side]);
+  } else {
+    removeClickBnt([side]);
+  }
 }
-// console.log(socketValue);
 
-const clickDownMouse = (event) => {
-  if ((event.target.id === 'CapsLock') || (event.code === 'CapsLock')) {
-    if ((numKeyboard === 1) || (numKeyboard === 3)) {
-      numKeyboard += 1;
-      changeKeyboard(numKeyboard);
-      document.querySelector('#CapsLock').classList.add('clickBtnCape');
-    } else {
-      numKeyboard -= 1;
-      changeKeyboard(numKeyboard);
-      document.querySelector('#CapsLock').classList.remove('clickBtnCape');
-    }
-  }
-  document.querySelector('div.input_sheet').lastChild.remove();
-
-
-  if ((event.target.id === 'AltLeft') || (event.code === 'AltLeft')) {
-    document.querySelector('#AltLeft').classList.add('clickBtnCape');
-  }
-  if ((event.target.id === 'ControlLeft') || (event.code === 'ControlLeft')) {
-    document.querySelector('#ControlLeft').classList.add('clickBtnCape');
-  }
-  if ((event.target.id === 'ShiftLeft') || (event.code === 'ShiftLeft')) {
-    document.querySelector('#ShiftLeft').classList.add('clickBtnCape');
-    if ((document.querySelector('#AltLeft').classList[1] === 'clickBtnCape') || (document.querySelector('#ControlLeft').classList[1] === 'clickBtnCape')) {
-      if ((numKeyboard === 1) || (numKeyboard === 2)) {
-        numKeyboard += 2;
-        changeKeyboard(numKeyboard);
-        localStorage.setItem('numSocket', 'en');
-      } else if ((numKeyboard === 3) || (numKeyboard === 4)) {
-        numKeyboard -= 2;
-        changeKeyboard(numKeyboard);
-        localStorage.setItem('numSocket', 'ru');
-      }
-    } else if ((numKeyboard === 1) || (numKeyboard === 3)) {
-      numKeyboard += 1;
-      changeKeyboard(numKeyboard);
-    } else {
-      numKeyboard -= 1;
-      changeKeyboard(numKeyboard);
-    }
-  }
-  if ((event.target.id === 'Backspace') || (event.code === 'Backspace')) {
-    document.querySelector('#Backspace').classList.add('clickBtnCape');
-    if (document.querySelector('div.input_sheet').childNodes.length >= 1) {
-      document.querySelector('div.input_sheet').lastChild.remove();
-    }
-  }
-  if ((event.target.id === 'Enter') || (event.code === 'Enter')) {
-    document.querySelector('#Enter').classList.add('clickBtnCape');
-    document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '<br>');
-  }
-  if ((event.target.id === 'Tab') || (event.code === 'Tab')) {
-    document.querySelector('#Tab').classList.add('clickBtnCape');
-    document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-  }
-  if ((event.target.id === 'Space') || (event.code === 'Space')) {
-    document.querySelector('#Space').classList.add('clickBtnCape');
-    document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '&nbsp');
+function clickShift(side) {
+  if (!checkContainsBtnCape([side])) {
+    addClickBnt([side]);
+  } else {
+    removeClickBnt([side]);
   }
 
+  if (checkContainsBtnCape(['AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'])) {
+    numKeyboard = ((numKeyboard === 1) || (numKeyboard === 2))
+      ? numKeyboard += 2 : numKeyboard -= 2;
+    changeKeyboard(numKeyboard);
+    localStorage.setItem('numSocket', numKeyboard);
+  } else {
+    numKeyboard = ((numKeyboard === 1) || (numKeyboard === 3))
+      ? numKeyboard += 1 : numKeyboard -= 1;
+    changeKeyboard(numKeyboard);
+  }
+}
 
-  if (event.target.classList[1] === 'itemChange') {
-    const tr = event.target.innerText;
-    document.querySelector('div.input_sheet').insertAdjacentText('beforeend', tr);
+function clickBackspace() {
+  addClickBnt(['Backspace']);
+  if (document.querySelector('div.input_sheet').childNodes.length >= 1) {
+    document.querySelector('div.input_sheet').lastChild.remove();
+  }
+}
+
+function clickEnter() {
+  addClickBnt(['Enter']);
+  document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '<br>');
+}
+
+function clickTab() {
+  addClickBnt(['Tab']);
+  document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+}
+
+function clickSpace() {
+  addClickBnt(['Space']);
+  document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '&nbsp');
+}
+
+function clickLetter(event) {
+  let tr;
+  if (!event.code) {
+    tr = event.target.innerText;
     event.target.classList.add('clickBtn');
-
-    document.querySelector('#AltLeft').classList.remove('clickBtnCape');
-    document.querySelector('#ControlLeft').classList.remove('clickBtnCape');
-    if (document.querySelector('#ShiftLeft').classList[1] === 'clickBtnCape') {
-      if ((numKeyboard === 2) || (numKeyboard === 4)) {
-        numKeyboard -= 1;
-        changeKeyboard(numKeyboard);
-
-        document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
-      }
-    }
+  } else {
+    tr = arrayKeyChange.find((item) => item[0] === event.code);
+    tr = tr[numKeyboard];
+    document.getElementById(event.code).classList.add('clickBtn');
   }
+  document.querySelector('div.input_sheet').insertAdjacentText('beforeend', tr);
 
-  for (let i = 0; i < arrayKeyChange.length; i++) {
-    const idKey = arrayKeyChange[i][0];
-    if (event.code === idKey) {
-      document.querySelector('div.input_sheet').insertAdjacentText('beforeend', arrayKeyChange[i][numKeyboard]);
-      document.querySelector(`#${idKey}`).classList.add('clickBtn');
-    }
+  removeClickBnt(['AltLeft', 'AltRight', 'ControlLeft', 'ControlLeft']);
+
+  if (checkContainsBtnCape(['ShiftLeft', 'ShiftRight'])) {
+    numKeyboard = ((numKeyboard === 2) || (numKeyboard === 4)) ? numKeyboard -= 1 : numKeyboard;
+    changeKeyboard(numKeyboard);
   }
+  removeClickBnt(['ShiftLeft', 'ShiftRight']);
+}
 
+
+const clickDownKey = (event) => {
+  document.querySelector('div.input_sheet').lastChild.remove();
+  const idCode = event.code ? event.code : event.target.id;
+  if (idCode === 'CapsLock') clickCapsLock();
+  if (idCode === 'AltLeft') clickAlt('AltLeft');
+  if (idCode === 'AltRight') clickAlt('AltRight');
+  if (idCode === 'ControlLeft') clickControl('ControlLeft');
+  if (idCode === 'ControlRight') clickControl('ControlRight');
+  if (idCode === 'ShiftLeft') clickShift('ShiftLeft');
+  if (idCode === 'ShiftRight') clickShift('ShiftRight');
+  if (idCode === 'Backspace') clickBackspace();
+  if (idCode === 'Enter') clickEnter();
+  if (idCode === 'Tab') clickTab();
+  if (idCode === 'Space') clickSpace();
+  if (event.target.classList.contains('itemChange') || arrayKeyChange.some((item) => item[0] === event.code)) clickLetter(event);
   document.querySelector('div.input_sheet').insertAdjacentHTML('beforeend', '|');
 };
-const clickUpMouse = () => {
-  document.querySelector('#Backspace').classList.remove('clickBtnCape');
-  document.querySelector('#Enter').classList.remove('clickBtnCape');
-  document.querySelector('#Tab').classList.remove('clickBtnCape');
-  document.querySelector('#Space').classList.remove('clickBtnCape');
 
+const clickUpKey = () => {
+  removeClickBnt(['Backspace', 'Enter', 'Tab', 'Space']);
   document.querySelectorAll('.itemChange').forEach((item) => item.classList.remove('clickBtn'));
-  if (((document.querySelector('#AltLeft').classList[1] === 'clickBtnCape') || (document.querySelector('#ControlLeft').classList[1] === 'clickBtnCape')) && (document.querySelector('#ShiftLeft').classList[1] === 'clickBtnCape')) {
-    document.querySelector('#AltLeft').classList.remove('clickBtnCape');
-    document.querySelector('#ControlLeft').classList.remove('clickBtnCape');
-    document.querySelector('#ShiftLeft').classList.remove('clickBtnCape');
+
+  if ((checkContainsBtnCape(['AltLeft', 'AltRight', 'ControlLeft', 'ControlRight'])) && checkContainsBtnCape(['ShiftLeft', 'ShiftRight'])) {
+    removeClickBnt(['AltLeft', 'AltRight', 'ControlLeft', 'ControlRight', 'ShiftLeft', 'ShiftRight']);
   }
 };
-document.querySelector('.keyboarder_wrapper').addEventListener('mousedown', clickDownMouse);
-document.addEventListener('mouseup', clickUpMouse);
 
-document.addEventListener('keydown', clickDownMouse);
-document.addEventListener('keyup', clickUpMouse);
+document.querySelector('.keyboarder_wrapper').addEventListener('mousedown', clickDownKey);
+document.addEventListener('mouseup', clickUpKey);
+
+document.addEventListener('keydown', clickDownKey);
+document.addEventListener('keyup', clickUpKey);
